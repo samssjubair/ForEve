@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //policeCardView.setOnClickListener(this);
         hospitalCardView.setOnClickListener(this);
         ambulanceCardView.setOnClickListener(this);
-        //firstAidCardVIew.setOnClickListener(this);
+        firstAidCardVIew.setOnClickListener(this);
         selfDefenseCardView.setOnClickListener(this);
         aboutCardView.setOnClickListener(this);
 
@@ -51,8 +51,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
 
         }
-        if(v.getId()==R.id.sirenCardViewId){
+        else if(v.getId()==R.id.sirenCardViewId){
             Intent intent = new Intent(MainActivity.this, SirenActivity.class);
+            startActivity(intent);
+
+        }
+        else if(v.getId()==R.id.firstAidCardViewId){
+            Intent intent=new Intent(MainActivity.this,FirstAidActivity.class);
             startActivity(intent);
 
         }

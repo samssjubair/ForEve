@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        app:videoId="T7aNSRoDCmg"
+        app:videoId="2ynlaWUwMsA"
         app:autoPlay="false"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        app:videoId="M4_8PoRQP8w"
+        app:videoId="a4kgIGGFEVY"
         android:layout_marginBottom="10dp"
         app:autoPlay="false"
         app:showFullScreenButton="true" />
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        app:videoId="KVpxP3ZZtAc"
+        app:videoId="M-tFVvdsWAY"
         android:layout_marginBottom="10dp"
         app:autoPlay="false"
         app:showFullScreenButton="true" />

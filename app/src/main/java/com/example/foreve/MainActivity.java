@@ -46,11 +46,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-//        if(v.getId()==R.id.selfDefenceCardViewId) {
-//            Intent intent = new Intent(MainActivity.this, SelfDefenseVideo.class);
-//            startActivity(intent);
-//
-//        }
+        if(v.getId()==R.id.selfDefenceCardViewId) {
+            Intent intent = new Intent(MainActivity.this, SelfDefenseActivity.class);
+            startActivity(intent);
+
+        }
         if(v.getId()==R.id.sirenCardViewId){
             Intent intent = new Intent(MainActivity.this, SirenActivity.class);
             startActivity(intent);

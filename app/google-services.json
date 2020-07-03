@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "552234960794",
+    "firebase_url": "https://foreve-64622.firebaseio.com",
+    "project_id": "foreve-64622",
+    "storage_bucket": "foreve-64622.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552234960794:android:12ffa1338bdc902371dc23",
+        "android_client_info": {
+          "package_name": "com.example.foreve"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552234960794-i018h4ck5qaqtdmb8fb7k0qtopo12b43.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foreve",
+            "certificate_hash": "14f3c472835c7daffe39ddac95b3d593b055af49"
+          }
+        },
+        {
+          "client_id": "552234960794-pib6gbi5g6rlp7v31cq4her50no2vdje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCse8gGCu7SQ-4p1MeDcrYLsC5ZtGpsZMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552234960794-pib6gbi5g6rlp7v31cq4her50no2vdje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

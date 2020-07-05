@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //unsafeCardView.setOnClickListener(this);
         sirenCardView.setOnClickListener(this);
         callCardView.setOnClickListener(this);
-        //videoCardView.setOnClickListener(this);
-        //policeCardView.setOnClickListener(this);
+        videoCardView.setOnClickListener(this);
+        policeCardView.setOnClickListener(this);
         hospitalCardView.setOnClickListener(this);
         ambulanceCardView.setOnClickListener(this);
         firstAidCardVIew.setOnClickListener(this);
@@ -55,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(MainActivity.this, SirenActivity.class);
             startActivity(intent);
 
+        }
+        else if(v.getId()==R.id.hospitalCardViewId){
+            Intent intent=new Intent(MainActivity.this,NearbyHospital.class);
+            startActivity(intent);
         }
         else if(v.getId()==R.id.firstAidCardViewId){
             Intent intent=new Intent(MainActivity.this,FirstAidActivity.class);
@@ -86,11 +90,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
         }
-//        else if(v.getId()==R.id.hospitalCardViewId)
-//        {
-//            Intent intent = new Intent(MainActivity.this, NearbyHospitalActivity.class);
-//            startActivity(intent);
-//        }
+        else if(v.getId()==R.id.policeStationCardViewId)
+        {
+            Intent intent = new Intent(MainActivity.this, NearbyHospital.class);
+            startActivity(intent);
+        }
+        else if(v.getId()==R.id.videoTapingCardViewId)
+        {
+            Intent intent = new Intent(MainActivity.this, HiddenCamActivity.class);
+            startActivity(intent);
+
+
+        }
 
 
     }

@@ -1,5 +1,6 @@
 package com.example.foreve;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
@@ -9,6 +10,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         selfDefenseCardView=(CardView)findViewById(R.id.selfDefenceCardViewId);
         aboutCardView=(CardView)findViewById(R.id.aboutUsCardViewId);
 
-        //unsafeCardView.setOnClickListener(this);
+        unsafeCardView.setOnClickListener(this);
         sirenCardView.setOnClickListener(this);
         callCardView.setOnClickListener(this);
         videoCardView.setOnClickListener(this);
@@ -44,12 +48,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater= getMenuInflater();
+        menuInflater.inflate(R.menu.menu_item,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.profileId){
+            Intent intent=new Intent(MainActivity.this,UserInfoActivity.class);
+            startActivity(intent);
+
+        }
+        else if(item.getItemId()==R.id.contactUsId){
+            Intent intent=new Intent(MainActivity.this,AboutActivity.class);
+            startActivity(intent);
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onClick(View v) {
 
         if(v.getId()==R.id.selfDefenceCardViewId) {
             Intent intent = new Intent(MainActivity.this, SelfDefenseActivity.class);
             startActivity(intent);
 
+        }
+        else if(v.getId()==R.id.unsafeCardViewId){
+            Intent intent= new Intent(MainActivity.this,UnsafeActivity.class);
+            startActivity(intent);
         }
         else if(v.getId()==R.id.sirenCardViewId){
             Intent intent = new Intent(MainActivity.this, SirenActivity.class);

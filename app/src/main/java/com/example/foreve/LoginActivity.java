@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
     private void userLogin() {
-        String email = loginEmailEditText.getText().toString().trim();
+        final String email = loginEmailEditText.getText().toString().trim();
         String password = loginPasswordEditText.getText().toString().trim();
         if (email.isEmpty()) {
             loginEmailEditText.setError("Enter an email address");
@@ -90,11 +90,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         progressBar.setVisibility(View.VISIBLE);
 
+//        Intent intent= new Intent(getApplicationContext(),UnsafeActivity.class);
+//        intent.putExtra("mail",email);
+
+
+
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
+                    DemoClass.msg=email;
+
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

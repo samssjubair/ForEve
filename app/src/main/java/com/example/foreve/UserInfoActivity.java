@@ -2,6 +2,7 @@ package com.example.foreve;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,7 @@ public class UserInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
+        getSupportActionBar().setTitle("Your Info");
 
         databaseReference=FirebaseDatabase.getInstance().getReference("UserInfo");
 
@@ -71,6 +73,9 @@ public class UserInfoActivity extends AppCompatActivity {
         friend2EmailET.setText("");
         friend3MobileET.setText("");
         friend3EmailET.setText("");
+
+        Intent intent=new Intent(UserInfoActivity.this,MainActivity.class);
+        startActivity(intent);
 
     }
 

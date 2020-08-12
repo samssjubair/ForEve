@@ -8,6 +8,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -18,11 +21,17 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
+
 
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_splash);
 
         progressBar=(ProgressBar)findViewById(R.id.progressBarId);
@@ -42,7 +51,7 @@ public class SplashActivity extends AppCompatActivity {
     public void doWork(){
         for(progress=20;progress<=100;progress+=60){
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
                 progressBar.setProgress(progress);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -53,9 +62,27 @@ public class SplashActivity extends AppCompatActivity {
     }
     public void startApp()
     {
-        Intent intent=new Intent(SplashActivity.this,LoginActivity.class);
-        startActivity(intent);
-        finish();
+        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
+        if(firebaseUser != null)
+        {
+            Intent i = new Intent(SplashActivity.this,MainActivity.class);
+
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(i);
+        }
+        else{
+            Intent intent=new Intent(SplashActivity.this,LoginActivity.class);
+            startActivity(intent);
+            finish();
+
+        }
+
+
+
+
+
     }
 
 }

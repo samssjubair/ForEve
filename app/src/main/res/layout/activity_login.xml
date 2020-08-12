@@ -10,11 +10,10 @@
     tools:context=".LoginActivity">
 
     <ImageView
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/ww"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="200dp"
-        />
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/foreve_logo" />
 
     <EditText
         android:textStyle="bold"

@@ -2,15 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/profileId"
-        android:title="Set Profile"
-        app:showAsAction="never"
-        />
-    <item
         android:id="@+id/contactUsId"
         android:title="Contact Us"
         app:showAsAction="never"
         />
+    <item
+        android:id="@+id/profileId"
+        android:title="Update Profile Info"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/logoutId"
+        android:title="Log Out"
+        app:showAsAction="never"/>
+
 
 
 

@@ -12,7 +12,7 @@ import android.app.Activity;
         import android.view.View;
         import android.widget.Button;
 
-public class HiddenCamActivity extends Activity implements SurfaceHolder.Callback {
+public class HiddenCamActivity extends AppCompatActivity implements SurfaceHolder.Callback {
 
     private static final String TAG = HiddenCamActivity.class.getSimpleName();
 

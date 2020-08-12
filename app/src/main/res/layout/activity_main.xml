@@ -173,7 +173,7 @@ tools:context=".MainActivity">
                 android:textAllCaps="true"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="START VIDEO"
+                android:text="EMERGENCY VIDEO"
                 android:textStyle="bold"
                 />
 
@@ -433,7 +433,7 @@ tools:context=".MainActivity">
                 android:textAllCaps="true"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="ABOUT US"
+                android:text="HOW TO USE"
                 android:textStyle="bold"
                 />
 

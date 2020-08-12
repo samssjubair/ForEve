@@ -11,12 +11,15 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +31,7 @@ public class UnsafeActivity extends AppCompatActivity implements LocationListene
     private Button unsafeButton;
     private FirebaseDatabase database;
     private DatabaseReference userRef;
+    private MediaPlayer mediaPlayer;
     private String username, usermail, usermob, fr1mob, fr1mail, fr2mob, fr2mail, fr3mob, fr3mail;
     private static final String USER = "UserInfo";
     private String email;
@@ -35,20 +39,26 @@ public class UnsafeActivity extends AppCompatActivity implements LocationListene
     private LocationManager locationManager;
     double latitude;
     double longitude;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unsafe);
+        getSupportActionBar().setTitle("Unsafe");
+
 
         //ActivityCompat.requestPermissions(UnsafeActivity.this,new String[] {Manifest.permission.SEND_SMS,Manifest.permission.READ_SMS},PackageManager.PERMISSION_GRANTED);
 
 //        Intent i=getIntent();
 //        email=i.getStringExtra("mail");
-        email = DemoClass.msg;
+
+//        email = DemoClass.msg;
+
+        email = user.getEmail();
 
         unsafeButton = (Button) findViewById(R.id.unsafeButtonId);
-        textView = (TextView) findViewById(R.id.textViewId);
+//        textView = (TextView) findViewById(R.id.textViewId);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -95,11 +105,16 @@ public class UnsafeActivity extends AppCompatActivity implements LocationListene
 
             }
         });
+        mediaPlayer= MediaPlayer.create(this,R.raw.siren);
 
 
         unsafeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                mediaPlayer.start();
+                mediaPlayer.setLooping(true);
                 String message="Danger Alert from foreve safety app: "+'\n'+"Your friend "+username+" is in danger at http://maps.google.com?q="+latitude+","+longitude;
                 SmsManager smsManager=SmsManager.getDefault();
                 smsManager.sendTextMessage(fr1mob,null,message,null,null);
@@ -122,7 +137,7 @@ public class UnsafeActivity extends AppCompatActivity implements LocationListene
     public void onLocationChanged(@NonNull Location location) {
         latitude=location.getLatitude();
         longitude=location.getLongitude();
-        textView.setText("Lat: "+latitude+'\n'+"Long: "+longitude);
+        //textView.setText("Lat: "+latitude+'\n'+"Long: "+longitude);
 
     }
 

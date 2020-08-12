@@ -10,18 +10,29 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    FirebaseAuth mAuth;
+    static final int REQUEST_VIDEO_CAPTURE = 1;
     private CardView unsafeCardView,sirenCardView,callCardView,videoCardView,policeCardView,hospitalCardView,ambulanceCardView,firstAidCardVIew,selfDefenseCardView,aboutCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Intent intent=new Intent(this,ExampleService.class);
+        startForegroundService(intent);
+
+        mAuth=FirebaseAuth.getInstance();
         unsafeCardView=(CardView)findViewById(R.id.unsafeCardViewId);
         sirenCardView=(CardView)findViewById(R.id.sirenCardViewId);
         callCardView=(CardView)findViewById(R.id.callCardViewId);
@@ -66,6 +77,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
 
         }
+        else if(item.getItemId()==R.id.logoutId){
+            FirebaseAuth.getInstance().signOut();
+            finish();
+            Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -87,12 +106,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
         else if(v.getId()==R.id.hospitalCardViewId){
-            Intent intent=new Intent(MainActivity.this,NearbyHospital.class);
-            startActivity(intent);
+//            Intent intent=new Intent(MainActivity.this,NearbyHospital.class);
+//            startActivity(intent);
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=hospitals");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
         }
         else if(v.getId()==R.id.firstAidCardViewId){
             Intent intent=new Intent(MainActivity.this,FirstAidActivity.class);
             startActivity(intent);
+
 
         }
         else if(v.getId()==R.id.callCardViewId) {
@@ -117,18 +141,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         else if(v.getId()==R.id.aboutUsCardViewId)
         {
-            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            Intent intent = new Intent(MainActivity.this, HowToUse.class);
             startActivity(intent);
         }
         else if(v.getId()==R.id.policeStationCardViewId)
         {
-            Intent intent = new Intent(MainActivity.this, NearbyHospital.class);
-            startActivity(intent);
+//            Intent intent = new Intent(MainActivity.this, NearbyHospital.class);
+//            startActivity(intent);
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=police station");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
         }
         else if(v.getId()==R.id.videoTapingCardViewId)
         {
-            Intent intent = new Intent(MainActivity.this, HiddenCamActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(MainActivity.this, HiddenCamActivity.class);
+//            startActivity(intent);
+
+
+
+            Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+            if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
+                startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
+            }
+
 
 
         }

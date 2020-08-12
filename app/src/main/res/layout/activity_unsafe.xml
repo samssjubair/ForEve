@@ -15,10 +15,10 @@
         android:id="@+id/unsafeButtonId"
         android:text="Tap here to let your \n Guardian know you're unsafe"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:id="@+id/textViewId"/>
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Email"-->
+<!--        android:id="@+id/textViewId"/>-->
 
 </LinearLayout>

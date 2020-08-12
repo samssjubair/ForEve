@@ -15,11 +15,14 @@ public class SirenActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_siren);
+        getSupportActionBar().setTitle("Siren");
         stopSirenButton=(Button)findViewById(R.id.sirenOffId);
 
         mediaPlayer=MediaPlayer.create(this,R.raw.siren);
-        stopSirenButton.setOnClickListener(this);
+
         mediaPlayer.start();
+        mediaPlayer.setLooping(true);
+        stopSirenButton.setOnClickListener(this);
 
 
     }

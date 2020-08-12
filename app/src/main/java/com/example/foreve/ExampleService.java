@@ -9,6 +9,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.IBinder;
 
 import androidx.core.app.NotificationCompat;
@@ -20,6 +21,7 @@ public class ExampleService extends Service {
     private float acelVal;
     private float acelLast;
     private float shake;
+    private MediaPlayer mediaPlayer;
 
     public ExampleService() {
     }
@@ -28,11 +30,13 @@ public class ExampleService extends Service {
     public void onCreate() {
         super.onCreate();
 
+
         sensorManager=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
         sensorManager.registerListener(sensorListener,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL);
         acelVal=SensorManager.GRAVITY_EARTH;
         acelLast=SensorManager.GRAVITY_EARTH;
         shake=0.00f;
+        mediaPlayer=MediaPlayer.create(this,R.raw.siren);
     }
 
 
@@ -67,11 +71,18 @@ public class ExampleService extends Service {
             float delta=acelVal-acelLast;
             shake=shake*0.9f+delta;
 
+
             if(shake>12)
             {
-                Intent intent= new Intent(ExampleService.this,SplashActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+//                Intent intent= new Intent(ExampleService.this,SplashActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(intent);
+
+
+                mediaPlayer.start();
+                mediaPlayer.setLooping(true);
+
+
             }
 
         }
